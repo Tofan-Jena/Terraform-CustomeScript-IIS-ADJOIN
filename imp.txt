@@ -30,33 +30,6 @@ SouthIndia  1.9.2
 SouthIndia  1.9.3
 SouthIndia  1.9.5
 
-=========================
-
-os_profile_windows_config {
-
-provision_vm_agent = true
-
-}
-
-extension {
-
-name = "myCustomeScript"
-publisher = "Microsoft.Compute"
-type = "CustomScriptExtension"
-type_handler_version = "1.9.5"
-
-seetings = <<SEETINGS
-{
-"fileUris" : [https://github.com/eltimmo/learning/blob/master/azureInstallWebServer.ps1]
-"commandToExecute": "start powershell -ExecutionPolicy Unrestricted -File azureInstallWebServer.ps1"
-}
-SEETINGS
-
-}
-
-
-
-
 ===========================================================================================================================
 
 
