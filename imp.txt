@@ -1,0 +1,69 @@
+az vm extension image list -l eastus2 -o table
+
+
+az vm extension image list-names -l southindia -p Microsoft.Compute -o table
+az vm extension image list --location westus -o table
+
+Location    Name
+----------  ---------------------
+eastus2     BGInfo
+eastus2     CustomScriptExtension
+eastus2     JsonADDomainExtension
+eastus2     VMAccessAgent
+
+az vm extension image list-versions -l southindia -p Microsoft.Compute -n JsonADDomainExtension -o table
+
+SouthIndia  1.0
+SouthIndia  1.0.3
+SouthIndia  1.1
+SouthIndia  1.10.2
+SouthIndia  1.10.3
+SouthIndia  1.10.5
+SouthIndia  1.2
+SouthIndia  1.3
+SouthIndia  1.4
+SouthIndia  1.7
+SouthIndia  1.8
+SouthIndia  1.9
+SouthIndia  1.9.1
+SouthIndia  1.9.2
+SouthIndia  1.9.3
+SouthIndia  1.9.5
+
+=========================
+
+os_profile_windows_config {
+
+provision_vm_agent = true
+
+}
+
+extension {
+
+name = "myCustomeScript"
+publisher = "Microsoft.Compute"
+type = "CustomScriptExtension"
+type_handler_version = "1.9.5"
+
+seetings = <<SEETINGS
+{
+"fileUris" : [https://github.com/eltimmo/learning/blob/master/azureInstallWebServer.ps1]
+"commandToExecute": "start powershell -ExecutionPolicy Unrestricted -File azureInstallWebServer.ps1"
+}
+SEETINGS
+
+}
+
+
+
+
+===========================================================================================================================
+
+
+https://jackstromberg.com/2018/11/using-terraform-with-azure-vm-extensions/
+
+https://www.terraform.io/docs/providers/azurerm/r/virtual_machine_extension.html
+
+https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/custom-script-windows
+https://docs.microsoft.com/en-us/powershell/module/az.compute/set-azvmcustomscriptextension?view=azps-3.6.1
+https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/features-windows#troubleshoot-vm-extensions
